@@ -21,7 +21,7 @@ export const getCountDvd = async()=>{
 
 // 1.Contar el número total de copias de DVD disponibles en todos los registros:
 
-export const getAllDVDTotalCopies = async () => {
+export const getTotalDVDCopies = async () => {
     let { db, conexion } = await connect.getinstance();
 
     const collection = db.collection('movis');
@@ -42,8 +42,10 @@ export const getAllDVDTotalCopies = async () => {
 
     const result = await collection.aggregate(pipeline).toArray();
     conexion.close();
-
-    const totalCopies = result.length > 0 ? result[0].total_copies : 0;
-
-    return { countByMoviDVD: totalCopies };
+    
+    if (result.length > 0) {
+        return { total_dvd_copies: result[0].total_copies };
+    } else {
+        return { total_dvd_copies: 0 };
+    }
 }
