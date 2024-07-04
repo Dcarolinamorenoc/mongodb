@@ -16,7 +16,7 @@ import {
     getActorsBornAfter1980,
     getActorWithMostAwards,
     getTotalActorsCount,
-    // getAverageActorAge,
+    getAverageActorAge,
     getActorsWithInstagram
 } from "./js/model/authors.js";
 
@@ -47,6 +47,6 @@ import {
 
 // console.log (await getTotalActorsCount());
 
-// console.log (await getAverageActorAge());
+console.log (await getAverageActorAge());
 
-console.log (await getActorsWithInstagram());
+// console.log (await getActorsWithInstagram());
