@@ -164,6 +164,12 @@ export const getTotalValueOfDVDs = async () => {
                     }
                 }
             }
+        },
+        {
+            "$project": {
+                "_id": 0,
+                "total_value": { "$round": ["$total_value", 1] } 
+            }
         }
     ];
 
@@ -171,12 +177,12 @@ export const getTotalValueOfDVDs = async () => {
     conexion.close();
     
     if (result.length > 0) {
-        const totalValue = result[0].total_value.toFixed(1);
-        return `Total Value: ${totalValue}`;
+        return { total_value: result[0].total_value };
     } else {
-        return 'Total Value: 0'; 
+        return { total_value: 0 };
     }
 }
+
 
 
 // 9.Encontrar todas las películas en las que John Doe ha actuado

@@ -47,6 +47,6 @@ import {
 
 // console.log (await getTotalActorsCount());
 
-console.log (await getAverageActorAge());
+// console.log (await getAverageActorAge());
 
 // console.log (await getActorsWithInstagram());

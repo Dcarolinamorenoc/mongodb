@@ -128,15 +128,21 @@ export const getTotalActorsCount = async () => {
                 "_id": null,
                 "total_actors": { "$sum": 1 }
             }
+        },
+        {
+            "$project": {
+                "_id": 0,
+                "total_actors": 1
+            }
         }
     ];
 
     const result = await collection.aggregate(pipeline).toArray();
     conexion.close();
 
-
-    return result[0]?.total_actors || 0;
+    return { total_actors: result[0]?.total_actors || 0 };
 }
+
 
 
 
