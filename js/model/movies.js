@@ -177,3 +177,31 @@ export const getTotalValueOfDVDs = async () => {
         return 'Total Value: 0'; 
     }
 }
+
+
+// 9.Encontrar todas las películas en las que John Doe ha actuado
+
+export const getMoviesWithJohnDoeActing = async () => {
+    let { db, conexion } = await connect.getinstance();
+
+    const collection = db.collection('movis');
+
+    const pipeline = [
+        {
+            $match: {
+                "character.id_actor": 1
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                name: 1,
+                genre: 1,
+            }
+        }
+    ];
+
+    const result = await collection.aggregate(pipeline).toArray();
+    conexion.close();
+    return result;
+}

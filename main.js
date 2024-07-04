@@ -5,7 +5,8 @@ import { getCountDvd,
     getTotalDVDCopies,
     getUniqueGenresSorted,
     getMoviesForActor,
-    getTotalValueOfDVDs
+    getTotalValueOfDVDs,
+    getMoviesWithJohnDoeActing
 } from "./js/model/movies.js";
 
 
@@ -37,4 +38,6 @@ import {
 
 // console.log (await getMoviesForActor());
 
-console.log (await getTotalValueOfDVDs());
+// console.log (await getTotalValueOfDVDs());
+
+console.log (await getMoviesWithJohnDoeActing());
