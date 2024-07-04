@@ -2,7 +2,7 @@ import { connect } from "./helpers/db/connect.js";
 
 
 import { getCountDvd,
-    getAllDVDTotalCopies
+    getTotalDVDCopies
 
 } from "./js/model/movies.js";
 
@@ -10,7 +10,8 @@ import { getCountDvd,
 import {
     getOscarWinners,
     getActorsWithAwardCount,
-    getActorsBornAfter1980
+    getActorsBornAfter1980,
+    getActorWithMostAwards
 } from "./js/model/authors.js";
 
 
@@ -20,10 +21,12 @@ import {
 
 // Desarrollo Actividad Blockbuster
 
-// console.log (await getAllDVDTotalCopies());
+// console.log (await getTotalDVDCopies());
 
 // console.log (await getOscarWinners());
 
 // console.log (await getActorsWithAwardCount());
 
-console.log (await getActorsBornAfter1980());
+// console.log (await getActorsBornAfter1980());
+
+console.log (await getActorWithMostAwards());

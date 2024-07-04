@@ -81,3 +81,32 @@ export const getActorsBornAfter1980 = async () => {
     conexion.close();
     return result;
 }
+
+
+// 5.Encontrar el actor con más premios
+
+export const getActorWithMostAwards = async () => {
+    let { db, conexion } = await connect.getinstance();
+
+    const collection = db.collection('authors');
+    const pipeline = [
+        {
+            "$project": {
+                "_id": 0,
+                "full_name": 1,
+                "total_awards": { "$size": "$awards" }
+            }
+        },
+        {
+            "$sort": { "total_awards": -1 }
+        },
+        {
+            "$limit": 1
+        }
+    ];
+
+    const result = await collection.aggregate(pipeline).toArray();
+    conexion.close();
+    
+    return result[0] || null;
+}
