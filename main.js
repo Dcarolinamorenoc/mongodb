@@ -8,7 +8,8 @@ import { getCountDvd,
 
 
 import {
-    getOscarWinners
+    getOscarWinners,
+    getActorsWithAwardCount
 } from "./js/model/authors.js";
 
 
@@ -20,4 +21,6 @@ import {
 
 // console.log (await getAllDVDTotalCopies());
 
-console.log (await getOscarWinners());
+// console.log (await getOscarWinners());
+
+console.log (await getActorsWithAwardCount());
