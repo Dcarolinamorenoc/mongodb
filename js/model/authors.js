@@ -113,3 +113,27 @@ export const getActorWithMostAwards = async () => {
     
     return result[0] || null;
 }
+
+
+// 10. Encontrar el número total de actores en la base de datos
+
+export const getTotalActorsCount = async () => {
+    let { db, conexion } = await connect.getinstance();
+
+    const collection = db.collection('authors');
+
+    const pipeline = [
+        {
+            "$group": {
+                "_id": null,
+                "total_actors": { "$sum": 1 }
+            }
+        }
+    ];
+
+    const result = await collection.aggregate(pipeline).toArray();
+    conexion.close();
+
+
+    return result[0]?.total_actors || 0;
+}

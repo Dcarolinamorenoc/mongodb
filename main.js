@@ -14,7 +14,8 @@ import {
     getOscarWinners,
     getActorsWithAwardCount,
     getActorsBornAfter1980,
-    getActorWithMostAwards
+    getActorWithMostAwards,
+    getTotalActorsCount
 } from "./js/model/authors.js";
 
 
@@ -40,4 +41,6 @@ import {
 
 // console.log (await getTotalValueOfDVDs());
 
-console.log (await getMoviesWithJohnDoeActing());
+// console.log (await getMoviesWithJohnDoeActing());
+
+console.log (await getTotalActorsCount());
