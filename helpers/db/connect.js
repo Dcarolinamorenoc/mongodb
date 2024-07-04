@@ -41,7 +41,11 @@ export class connect {
         let url = `${this.#host}${this.user}:${this.#pass}@${this.cluster}:${this.port}`;
         this.conexion = new MongoClient(url);
         await this.conexion.connect();
-        console.log("Mensaje de la coexion ");
+        console.log("Mensaje en respuesta a la consulta: ");
         this.db = this.conexion.db(this.dbName);
     }
 }
+
+
+
+// mongodb+srv://jhongg2012:Sb4bFEJqbTI3m2Cs@cluster0.vpvk7tx.mongodb.net/m2

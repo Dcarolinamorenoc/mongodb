@@ -1,3 +1,15 @@
-import {getMovieById} from "./js/model/movies.js";
+import { connect } from "./helpers/db/connect.js";
 
-console.log (await getMoviById ("668583660d6c63638c819c9c"));
+
+import { getCountDvd,
+    getAllDVDTotalCopies
+
+} from "./js/model/movies.js";
+
+
+// console.log (await getCountDvd());
+
+
+// Desarrollo Actividad Blockbuster
+
+console.log (await getAllDVDTotalCopies());
