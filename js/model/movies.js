@@ -49,3 +49,32 @@ export const getTotalDVDCopies = async () => {
         return { total_dvd_copies: 0 };
     }
 }
+
+
+// 6.Listar todos los géneros de películas distintos
+
+export const getUniqueGenresSorted = async () => {
+    let { db, conexion } = await connect.getinstance();
+
+    const collection = db.collection('movis');
+    const pipeline = [
+        {
+            "$unwind": "$genre"
+        },
+        {
+            "$group": {
+                "_id": "$genre"
+            }
+        },
+        {
+            "$sort": { "_id": 1 }
+        }
+    ];
+
+    const result = await collection.aggregate(pipeline).toArray();
+    conexion.close();
+    
+    const genres = result.map(item => item._id);
+    
+    return genres;
+}

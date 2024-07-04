@@ -2,8 +2,8 @@ import { connect } from "./helpers/db/connect.js";
 
 
 import { getCountDvd,
-    getTotalDVDCopies
-
+    getTotalDVDCopies,
+    getUniqueGenresSorted
 } from "./js/model/movies.js";
 
 
@@ -29,4 +29,6 @@ import {
 
 // console.log (await getActorsBornAfter1980());
 
-console.log (await getActorWithMostAwards());
+// console.log (await getActorWithMostAwards());
+
+console.log (await getUniqueGenresSorted());
