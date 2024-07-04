@@ -15,7 +15,9 @@ import {
     getActorsWithAwardCount,
     getActorsBornAfter1980,
     getActorWithMostAwards,
-    getTotalActorsCount
+    getTotalActorsCount,
+    // getAverageActorAge,
+    getActorsWithInstagram
 } from "./js/model/authors.js";
 
 
@@ -43,4 +45,8 @@ import {
 
 // console.log (await getMoviesWithJohnDoeActing());
 
-console.log (await getTotalActorsCount());
+// console.log (await getTotalActorsCount());
+
+// console.log (await getAverageActorAge());
+
+console.log (await getActorsWithInstagram());
