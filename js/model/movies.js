@@ -24,6 +24,8 @@ export const getCountDvd = async()=>{
 
 // INICIO DE LAS CONSULTAS DE BLOCKBUSTER EN EL APARTADO DE MOVIES
 
+
+
 // 1.Contar el número total de copias de DVD disponibles en todos los registros:
 
 export const getTotalDVDCopies = async () => {
@@ -56,6 +58,8 @@ export const getTotalDVDCopies = async () => {
 }
 
 
+
+
 // 6.Listar todos los géneros de películas distintos
 
 export const getUniqueGenresSorted = async () => {
@@ -83,6 +87,8 @@ export const getUniqueGenresSorted = async () => {
     
     return genres;
 }
+
+
 
 
 // 7.Encontrar películas donde el actor con id 1 haya participado
@@ -140,6 +146,9 @@ export const getMoviesForActor = async () => {
 }
 
 
+
+
+
 // 8.Calcular el valor total de todas las copias de DVD disponibles
 
 export const getTotalValueOfDVDs = async () => {
@@ -182,6 +191,7 @@ export const getTotalValueOfDVDs = async () => {
         return { total_value: 0 };
     }
 }
+
 
 
 

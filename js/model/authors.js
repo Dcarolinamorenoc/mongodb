@@ -5,6 +5,8 @@ import { ObjectId } from "mongodb";
 
 // INICIO DE LAS CONSULTAS DE BLOCKBUSTER EN EL APARTADO DE AUTHORS
 
+
+
 // 2.Encontrar todos los actores que han ganado premios Oscar
 
 export const getOscarWinners = async () => {
@@ -36,6 +38,7 @@ export const getOscarWinners = async () => {
 
 
 
+
 // 3.Encontrar la cantidad total de premios que ha ganado cada actor
 
 export const getActorsWithAwardCount = async () => {
@@ -56,6 +59,8 @@ export const getActorsWithAwardCount = async () => {
     conexion.close();
     return result;
 }
+
+
 
 
 
@@ -86,6 +91,8 @@ export const getActorsBornAfter1980 = async () => {
 }
 
 
+
+
 // 5.Encontrar el actor con más premios
 
 export const getActorWithMostAwards = async () => {
@@ -113,6 +120,8 @@ export const getActorWithMostAwards = async () => {
     
     return result[0] || null;
 }
+
+
 
 
 // 10. Encontrar el número total de actores en la base de datos
@@ -185,6 +194,8 @@ export const getAverageActorAge = async () => {
         return { average_actors_age: 0 };
     }
 }
+
+
 
 
 // 12.Encontrar todos los actores que tienen una cuenta de Instagram
