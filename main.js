@@ -9,7 +9,8 @@ import { getCountDvd,
 
 import {
     getOscarWinners,
-    getActorsWithAwardCount
+    getActorsWithAwardCount,
+    getActorsBornAfter1980
 } from "./js/model/authors.js";
 
 
@@ -23,4 +24,6 @@ import {
 
 // console.log (await getOscarWinners());
 
-console.log (await getActorsWithAwardCount());
+// console.log (await getActorsWithAwardCount());
+
+console.log (await getActorsBornAfter1980());
