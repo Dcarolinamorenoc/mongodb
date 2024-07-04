@@ -138,3 +138,42 @@ export const getMoviesForActor = async () => {
         format: movie.format.map(fmt => `${fmt.name} (${fmt.copies} copies, $${fmt.value})`)
     }));
 }
+
+
+// 8.Calcular el valor total de todas las copias de DVD disponibles
+
+export const getTotalValueOfDVDs = async () => {
+    let { db, conexion } = await connect.getinstance();
+
+    const collection = db.collection('movis');
+    const pipeline = [
+        {
+            "$unwind": "$format"
+        },
+        {
+            "$match": {
+                "format.name": "dvd"
+            }
+        },
+        {
+            "$group": {
+                "_id": null,
+                "total_value": {
+                    "$sum": {
+                        "$multiply": ["$format.copies", "$format.value"]
+                    }
+                }
+            }
+        }
+    ];
+
+    const result = await collection.aggregate(pipeline).toArray();
+    conexion.close();
+    
+    if (result.length > 0) {
+        const totalValue = result[0].total_value.toFixed(1);
+        return `Total Value: ${totalValue}`;
+    } else {
+        return 'Total Value: 0'; 
+    }
+}

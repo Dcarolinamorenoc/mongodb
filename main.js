@@ -4,7 +4,8 @@ import { connect } from "./helpers/db/connect.js";
 import { getCountDvd,
     getTotalDVDCopies,
     getUniqueGenresSorted,
-    getMoviesForActor
+    getMoviesForActor,
+    getTotalValueOfDVDs
 } from "./js/model/movies.js";
 
 
@@ -34,4 +35,6 @@ import {
 
 // console.log (await getUniqueGenresSorted());
 
-console.log (await getMoviesForActor());
+// console.log (await getMoviesForActor());
+
+console.log (await getTotalValueOfDVDs());
