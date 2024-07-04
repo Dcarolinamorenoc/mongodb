@@ -221,3 +221,46 @@ export const getMoviesWithJohnDoeActing = async () => {
     conexion.close();
     return result;
 }
+
+
+// 13.Encontrar todas las películas en las que participan actores principales
+
+export const getMoviesWithMainCharacters = async () => {
+    let { db, conexion } = await connect.getinstance();
+
+    const collection = db.collection('movis'); 
+
+    const pipeline = [
+        { 
+            "$unwind": "$character" 
+        },
+        { 
+            "$match": { "character.rol": "principal" } 
+        },
+        { 
+            "$group": { 
+                "_id": "$_id", 
+                "name": { "$first": "$name" }, 
+                "actors": { 
+                    "$push": { 
+                        "name": "$character.apodo", 
+                        "rol": "$character.rol" 
+                    } 
+                } 
+            } 
+        },
+        {
+            "$project": {
+                "_id": 0,
+                "id": "$_id",
+                "name": 1,
+                "actors": 1
+            }
+        }
+    ];
+
+    const result = await collection.aggregate(pipeline).toArray();
+    conexion.close();
+
+    return result;
+}

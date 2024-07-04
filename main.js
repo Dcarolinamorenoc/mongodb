@@ -6,7 +6,8 @@ import { getCountDvd,
     getUniqueGenresSorted,
     getMoviesForActor,
     getTotalValueOfDVDs,
-    getMoviesWithJohnDoeActing
+    getMoviesWithJohnDoeActing,
+    getMoviesWithMainCharacters
 } from "./js/model/movies.js";
 
 
@@ -54,3 +55,5 @@ import {
 // console.log (await getAverageActorAge());
 
 // console.log (await getActorsWithInstagram());
+
+console.log (await getMoviesWithMainCharacters());
