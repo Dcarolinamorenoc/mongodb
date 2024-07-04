@@ -3,7 +3,8 @@ import { connect } from "./helpers/db/connect.js";
 
 import { getCountDvd,
     getTotalDVDCopies,
-    getUniqueGenresSorted
+    getUniqueGenresSorted,
+    getMoviesForActor
 } from "./js/model/movies.js";
 
 
@@ -31,4 +32,6 @@ import {
 
 // console.log (await getActorWithMostAwards());
 
-console.log (await getUniqueGenresSorted());
+// console.log (await getUniqueGenresSorted());
+
+console.log (await getMoviesForActor());

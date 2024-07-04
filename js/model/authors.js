@@ -2,6 +2,9 @@ import { connect } from "../../helpers/db/connect.js"
 import { ObjectId } from "mongodb";
 
 
+
+// INICIO DE LAS CONSULTAS DE BLOCKBUSTER EN EL APARTADO DE AUTHORS
+
 // 2.Encontrar todos los actores que han ganado premios Oscar
 
 export const getOscarWinners = async () => {
