@@ -63,8 +63,8 @@ import {
 
 // 7.Encontrar películas donde el actor con id 1 haya participado
 
-let { movies_for_actor } = await getMoviesForActor();
-console.log(movies_for_actor);
+// let { movies_for_actor } = await getMoviesForActor();
+// console.log(movies_for_actor);
 
 
 // 8.Calcular el valor total de todas las copias de DVD disponibles
@@ -74,7 +74,8 @@ console.log(movies_for_actor);
 
 // 9.Encontrar todas las películas en las que John Doe ha actuado
 
-// console.log (await getMoviesWithJohnDoeActing());
+let { movies_for_actor } = await getMoviesWithJohnDoeActing();
+console.log(movies_for_actor);
 
 
 // 10. Encontrar el número total de actores en la base de datos
