@@ -1,4 +1,5 @@
 import { connect } from "./helpers/db/connect.js";
+import util from 'util';
 
 
 import { getCountDvd,
@@ -90,10 +91,11 @@ import {
 
 // 12.Encontrar todos los actores que tienen una cuenta de Instagram
 
-let { actors_with_instagram } = await getActorsWithInstagram();
-console.log(JSON.stringify(actors_with_instagram, null, 2));
+// let { actors_with_instagram } = await getActorsWithInstagram();
+// console.log(actors_with_instagram);
 
 
 // 13.Encontrar todas las películas en las que participan actores principales
 
-// console.log (await getMoviesWithMainCharacters());
+let { movies_with_main_characters } = await getMoviesWithMainCharacters();
+console.log(util.inspect(movies_with_main_characters, { depth: null, colors: true }));

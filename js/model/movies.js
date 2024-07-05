@@ -3,6 +3,7 @@ import { ObjectId } from "mongodb";
 
 
 
+
 export const getCountDvd = async()=>{
     let {db, conexion} = await connect.getinstance();
 
@@ -267,18 +268,15 @@ export const getTotalValueOfDVDs = async () => {
 
 // 13.Encontrar todas las películas en las que participan actores principales
 
+
 export const getMoviesWithMainCharacters = async () => {
     let { db, conexion } = await connect.getinstance();
 
     const collection = db.collection('movis'); 
 
     const pipeline = [
-        { 
-            "$unwind": "$character" 
-        },
-        { 
-            "$match": { "character.rol": "principal" } 
-        },
+        { "$unwind": "$character" },
+        { "$match": { "character.rol": "principal" } },
         { 
             "$group": { 
                 "_id": "$_id", 
@@ -294,7 +292,7 @@ export const getMoviesWithMainCharacters = async () => {
         {
             "$project": {
                 "_id": 0,
-                "id": "$_id",
+                "id": { "$toString": "$_id" },
                 "name": 1,
                 "actors": 1
             }
@@ -304,5 +302,13 @@ export const getMoviesWithMainCharacters = async () => {
     const result = await collection.aggregate(pipeline).toArray();
     conexion.close();
 
-    return result;
+    const formattedResult = result.map(movie => ({
+        id: movie.id,
+        name: movie.name,
+        actors: movie.actors
+    }));
+
+    return { 
+        movies_with_main_characters: formattedResult
+    };
 }
