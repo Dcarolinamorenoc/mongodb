@@ -100,7 +100,7 @@ export const getMoviesForActor = async () => {
     const pipeline = [
         {
             $match: {
-                "character.id_actor": 3
+                "character.id_actor": 1
             }
         },
         {
@@ -108,13 +108,13 @@ export const getMoviesForActor = async () => {
                 _id: 0,
                 name: 1,
                 genre: 1,
-                // "character": {
-                //     $filter: {
-                //         input: "$character",
-                //         as: "char",
-                //         cond: { $eq: ["$$char.id_actor", 1] }
-                //     }
-                // },
+                "character": {
+                    $filter: {
+                        input: "$character",
+                        as: "char",
+                        cond: { $eq: ["$$char.id_actor", 1] }
+                    }
+                },
                 format: {
                     $map: {
                         input: "$format",
@@ -133,16 +133,17 @@ export const getMoviesForActor = async () => {
     const result = await collection.aggregate(pipeline).toArray();
     conexion.close();
     
-
-    return result.map(movie => ({
+    const formattedResult = result.map(movie => ({
         name: movie.name,
         genre: movie.genre.join(", "),
-        // character: movie.character.map(char => ({
-        //     rol: char.rol,
-        //     apodo: char.apodo
-        // })),
+        character: movie.character.map(char => ({
+            rol: char.rol,
+            apodo: char.apodo
+        })),
         format: movie.format.map(fmt => `${fmt.name} (${fmt.copies} copies, $${fmt.value})`)
     }));
+
+    return { movies_for_actor: formattedResult[0] }; 
 }
 
 
