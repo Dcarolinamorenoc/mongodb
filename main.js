@@ -13,7 +13,8 @@ import { getCountDvd,
     getMoviesByActorAndFormat,
     getSciFiMoviesByActor,
     getTopDVDCopiesMovie,
-    getTotalBlurayValue
+    getTotalBlurayValue,
+    getMoviesByActorId2
 } from "./js/model/movies.js";
 
 
@@ -134,4 +135,9 @@ import {
 
 // 19. Calcular el valor total de todas las copias de Blu-ray disponibles
 
-console.log (await getTotalBlurayValue());
+// console.log (await getTotalBlurayValue());
+
+
+// 20.Encontrar todas las películas en las que el actor con id 2 haya participado
+
+console.log (await getMoviesByActorId2());
