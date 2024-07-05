@@ -23,7 +23,8 @@ import {
     getActorWithMostAwards,
     getTotalActorsCount,
     getAverageActorAge,
-    getActorsWithInstagram
+    getActorsWithInstagram,
+    getActorsRecentAwardsAfter2015
 } from "./js/model/authors.js";
 
 
@@ -122,4 +123,9 @@ import {
 
 // 17. Encontrar la película con más copias disponibles en formato DVD
 
-console.log (await getTopDVDCopiesMovie());
+// console.log (await getTopDVDCopiesMovie());
+
+
+// 18. Encontrar todos los actores que han ganado premios después de 2015
+
+console.log (await getActorsRecentAwardsAfter2015());
