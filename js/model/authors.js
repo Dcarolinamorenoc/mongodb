@@ -1,6 +1,6 @@
 import { connect } from "../../helpers/db/connect.js"
 import { ObjectId } from "mongodb";
-
+import util from 'util';
 
 
 // INICIO DE LAS CONSULTAS DE BLOCKBUSTER EN EL APARTADO DE AUTHORS
@@ -234,6 +234,15 @@ export const getActorsWithInstagram = async () => {
     ];
     const result = await collection.aggregate(pipeline).toArray();
     conexion.close();
-    return { actors_with_instagram: result };
-  }
-
+    
+    return { 
+      actors_with_instagram: {
+        [util.inspect.custom]: function(depth, options) {
+          return util.inspect(result, { depth: null, colors: options.colors });
+        },
+        toJSON: function() {
+          return result;
+        }
+      }
+    };
+}
