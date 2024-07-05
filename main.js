@@ -10,7 +10,8 @@ import { getCountDvd,
     getMoviesWithJohnDoeActing,
     getMoviesWithMainCharacters,
     getTotalAwards,
-    getMoviesByActorAndFormat
+    getMoviesByActorAndFormat,
+    getSciFiMoviesByActor
 } from "./js/model/movies.js";
 
 
@@ -110,4 +111,9 @@ import {
 
 // 15.Encontrar todas las películas en las que John Doe ha actuado y que estén en formato Blu-ray
 
-console.log (await getMoviesByActorAndFormat());
+// console.log (await getMoviesByActorAndFormat());
+
+
+// 16.Encontrar todas las películas de ciencia ficción que tengan al actor con id 3
+
+console.log (await getSciFiMoviesByActor());

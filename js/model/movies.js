@@ -399,3 +399,44 @@ export const getMoviesByActorAndFormat = async () => {
     
     return result;
 };
+
+
+// 16.Encontrar todas las películas de ciencia ficción que tengan al actor con id 3
+
+export const getSciFiMoviesByActor = async () => {
+    let { db, conexion } = await connect.getinstance();
+
+    const collection = db.collection('movis');
+    const pipeline = [
+        {
+            $lookup: {
+                from: "authors",
+                localField: "character.id_actor",
+                foreignField: "id_actor",
+                as: "actor_info"
+            }
+        },
+        {
+            $unwind: "$genre"
+        },
+        {
+            $match: {
+                genre: "Ciencia Ficción",
+                "character.id_actor": 3
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                movie_name: "$name",
+                actor_name: { $arrayElemAt: ["$actor_info.full_name", 2] },
+                genre: 1
+            }
+        }
+    ];
+
+    const result = await collection.aggregate(pipeline).toArray();
+    conexion.close();
+    
+    return result;
+};
