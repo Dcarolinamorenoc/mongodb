@@ -8,7 +8,8 @@ import { getCountDvd,
     getMoviesForActor,
     getTotalValueOfDVDs,
     getMoviesWithJohnDoeActing,
-    getMoviesWithMainCharacters
+    getMoviesWithMainCharacters,
+    getTotalAwards
 } from "./js/model/movies.js";
 
 
@@ -91,11 +92,16 @@ import {
 
 // 12.Encontrar todos los actores que tienen una cuenta de Instagram
 
-let { actors_with_instagram } = await getActorsWithInstagram();
-console.log(actors_with_instagram);
+// let { actors_with_instagram } = await getActorsWithInstagram();
+// console.log(actors_with_instagram);
 
 
 // 13.Encontrar todas las películas en las que participan actores principales
 
 // let { movies_with_main_characters } = await getMoviesWithMainCharacters();
 // console.log(util.inspect(movies_with_main_characters, { depth: null, colors: true }));
+
+
+// 14.Encontrar el número total de premios que se han otorgado en todas las películas
+
+console.log (await getTotalAwards());

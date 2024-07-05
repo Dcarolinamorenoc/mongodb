@@ -266,6 +266,8 @@ export const getTotalValueOfDVDs = async () => {
     }
 
 
+    
+
 // 13.Encontrar todas las películas en las que participan actores principales
 
 
@@ -311,4 +313,48 @@ export const getMoviesWithMainCharacters = async () => {
     return { 
         movies_with_main_characters: formattedResult
     };
+}
+
+
+
+// 14.Encontrar el número total de premios que se han otorgado en todas las películas
+
+export const getTotalAwards = async () => {
+    let { db, conexion } = await connect.getinstance();
+
+    const collection = db.collection('movis');
+    const pipeline = [
+        {
+            $unwind: "$character"
+        },
+        {
+            $lookup: {
+                from: "authors",
+                localField: "character.id_actor",
+                foreignField: "id_actor",
+                as: "movies_award"
+            }
+        },
+        {
+            $unwind: "$movies_award"
+        },
+        {
+            $unwind: "$movies_award.awards"
+        },
+        {
+            $group: {
+                _id: null,
+                total_award: { $sum: 1 }
+            }
+        }
+    ];
+
+    const result = await collection.aggregate(pipeline).toArray();
+    conexion.close();
+    
+    if (result.length > 0) {
+        return { total_awards: result[0].total_award };
+    } else {
+        return { total_awards: 0 };
+    }
 }
