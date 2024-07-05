@@ -74,8 +74,8 @@ import {
 
 // 9.Encontrar todas las películas en las que John Doe ha actuado
 
-let { movies_for_actor } = await getMoviesWithJohnDoeActing();
-console.log(movies_for_actor);
+// let { movies_for_actor } = await getMoviesWithJohnDoeActing();
+// console.log(movies_for_actor);
 
 
 // 10. Encontrar el número total de actores en la base de datos
@@ -90,7 +90,8 @@ console.log(movies_for_actor);
 
 // 12.Encontrar todos los actores que tienen una cuenta de Instagram
 
-// console.log (await getActorsWithInstagram());
+let { actors_with_instagram } = await getActorsWithInstagram();
+console.log(JSON.stringify(actors_with_instagram, null, 2));
 
 
 // 13.Encontrar todas las películas en las que participan actores principales

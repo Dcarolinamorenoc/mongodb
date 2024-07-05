@@ -202,30 +202,38 @@ export const getAverageActorAge = async () => {
 
 export const getActorsWithInstagram = async () => {
     let { db, conexion } = await connect.getinstance();
-
     const collection = db.collection('authors');
-
     const pipeline = [
-        {
-            "$match": {
-                "social_media.instagram": { "$exists": true, "$ne": "" }
-            }
-        },
-        {
-            "$project": {
-                "_id": 0,
-                "id_actor": 1,
-                "full_name": 1,
-                "date_of_birth": 1,
-                "nationality": 1,
-                "biography": 1,
-                "social_media": 1,
-                "website": 1
-            }
+      {
+        $match: {
+          "social_media.instagram": { $exists: true, $ne: "" }
         }
+      },
+      {
+        $project: {
+          _id: 1,
+          id_actor: 1,
+          full_name: 1,
+          date_of_birth: 1,
+          nationality: 1,
+          biography: 1,
+          awards: {
+            $map: {
+              input: "$awards",
+              as: "award",
+              in: {
+                name: "$$award.name",
+                year: "$$award.year"
+              }
+            }
+          },
+          social_media: 1,
+          website: 1
+        }
+      }
     ];
-
     const result = await collection.aggregate(pipeline).toArray();
     conexion.close();
-    return result;
-}
+    return { actors_with_instagram: result };
+  }
+
