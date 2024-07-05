@@ -401,6 +401,7 @@ export const getMoviesByActorAndFormat = async () => {
 };
 
 
+
 // 16.Encontrar todas las películas de ciencia ficción que tengan al actor con id 3
 
 export const getSciFiMoviesByActor = async () => {
@@ -431,6 +432,42 @@ export const getSciFiMoviesByActor = async () => {
                 movie_name: "$name",
                 actor_name: { $arrayElemAt: ["$actor_info.full_name", 2] },
                 genre: 1
+            }
+        }
+    ];
+
+    const result = await collection.aggregate(pipeline).toArray();
+    conexion.close();
+    
+    return result;
+};
+
+
+
+// 17. Encontrar la película con más copias disponibles en formato DVD
+
+export const getTopDVDCopiesMovie = async () => {
+    let { db, conexion } = await connect.getinstance();
+
+    const collection = db.collection('movis');
+    const pipeline = [
+        { 
+            $unwind: "$format" 
+        },
+        { 
+            $match: { "format.name": "dvd" } 
+        },
+        { 
+            $sort: { "format.copies": -1 } 
+        },
+        { 
+            $limit: 1 
+        },
+        {
+            $project: {
+                _id: 1,
+                name: 1,
+                "format.copies": 1
             }
         }
     ];

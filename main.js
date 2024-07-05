@@ -11,7 +11,8 @@ import { getCountDvd,
     getMoviesWithMainCharacters,
     getTotalAwards,
     getMoviesByActorAndFormat,
-    getSciFiMoviesByActor
+    getSciFiMoviesByActor,
+    getTopDVDCopiesMovie
 } from "./js/model/movies.js";
 
 
@@ -116,4 +117,9 @@ import {
 
 // 16.Encontrar todas las películas de ciencia ficción que tengan al actor con id 3
 
-console.log (await getSciFiMoviesByActor());
+// console.log (await getSciFiMoviesByActor());
+
+
+// 17. Encontrar la película con más copias disponibles en formato DVD
+
+console.log (await getTopDVDCopiesMovie());
