@@ -266,7 +266,7 @@ export const getTotalValueOfDVDs = async () => {
     }
 
 
-    
+
 
 // 13.Encontrar todas las películas en las que participan actores principales
 
@@ -358,3 +358,44 @@ export const getTotalAwards = async () => {
         return { total_awards: 0 };
     }
 }
+
+
+// 15.Encontrar todas las películas en las que John Doe ha actuado y que estén en formato Blu-ray
+
+export const getMoviesByActorAndFormat = async () => {
+    let { db, conexion } = await connect.getinstance();
+
+    const collection = db.collection('movis');
+    const pipeline = [
+        {
+            $lookup: {
+                from: "authors",
+                localField: "character.id_actor",
+                foreignField: "id_actor",
+                as: "actor_info"
+            }
+        },
+        {
+            $unwind: "$format"
+        },
+        {
+            $match: {
+                "actor_info.full_name": "John Doe",
+                "format.name": "Bluray"
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                actor_name: { $arrayElemAt: ["$actor_info.full_name", 0] },
+                movie_name: "$name",
+                format: "$format.name"
+            }
+        }
+    ];
+
+    const result = await collection.aggregate(pipeline).toArray();
+    conexion.close();
+    
+    return result;
+};

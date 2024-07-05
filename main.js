@@ -9,7 +9,8 @@ import { getCountDvd,
     getTotalValueOfDVDs,
     getMoviesWithJohnDoeActing,
     getMoviesWithMainCharacters,
-    getTotalAwards
+    getTotalAwards,
+    getMoviesByActorAndFormat
 } from "./js/model/movies.js";
 
 
@@ -104,4 +105,9 @@ import {
 
 // 14.Encontrar el número total de premios que se han otorgado en todas las películas
 
-console.log (await getTotalAwards());
+// console.log (await getTotalAwards());
+
+
+// 15.Encontrar todas las películas en las que John Doe ha actuado y que estén en formato Blu-ray
+
+console.log (await getMoviesByActorAndFormat());
