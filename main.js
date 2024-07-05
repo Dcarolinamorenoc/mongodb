@@ -12,7 +12,8 @@ import { getCountDvd,
     getTotalAwards,
     getMoviesByActorAndFormat,
     getSciFiMoviesByActor,
-    getTopDVDCopiesMovie
+    getTopDVDCopiesMovie,
+    getTotalBlurayValue
 } from "./js/model/movies.js";
 
 
@@ -128,4 +129,9 @@ import {
 
 // 18. Encontrar todos los actores que han ganado premios después de 2015
 
-console.log (await getActorsRecentAwardsAfter2015());
+// console.log (await getActorsRecentAwardsAfter2015());
+
+
+// 19. Calcular el valor total de todas las copias de Blu-ray disponibles
+
+console.log (await getTotalBlurayValue());

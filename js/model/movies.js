@@ -477,3 +477,35 @@ export const getTopDVDCopiesMovie = async () => {
     
     return result;
 };
+
+
+// 19. Calcular el valor total de todas las copias de Blu-ray disponibles
+
+export const getTotalBlurayValue = async () => {
+    let { db, conexion } = await connect.getinstance();
+
+    const collection = db.collection('movis');
+    const pipeline = [
+        { 
+            $unwind: "$format" 
+        },
+        { 
+            $match: { "format.name": "Bluray" } 
+        },
+        {
+            $group: {
+                _id: null,
+                total_value: { $sum: { $multiply: ["$format.copies", "$format.value"] } }
+            }
+        }
+    ];
+
+    const result = await collection.aggregate(pipeline).toArray();
+    conexion.close();
+    
+    if (result.length > 0) {
+        return { total_bluray_value: result[0].total_value };
+    } else {
+        return { total_bluray_value: 0 };
+    }
+};
