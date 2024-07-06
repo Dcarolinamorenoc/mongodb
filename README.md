@@ -556,3 +556,17 @@
     ]);
     ```
 
+
+
+# COMANDOS DE ESTE TRABAJO 
+
+
+
+```
+npm i mongodb
+```
+
+```
+npm ru
+```
+
