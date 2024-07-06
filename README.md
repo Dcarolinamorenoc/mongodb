@@ -567,6 +567,6 @@ npm i mongodb
 ```
 
 ```
-npm ru
+npm run dev
 ```
 
