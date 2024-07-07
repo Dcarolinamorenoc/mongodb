@@ -24,7 +24,11 @@ let objmovis = new movis();
 
 // console.log(`13.Encontrar todas las películas en las que participan actores principales`, await objmovis.getMoviesWithMainCharacters());
 
-console.log(`14.Encontrar el número total de premios que se han otorgado en todas las películas`, await objmovis.getTotalAwards());
+// console.log(`14.Encontrar el número total de premios que se han otorgado en todas las películas`, await objmovis.getTotalAwards());
+
+console.log(`15.Encontrar todas las películas en las que John Doe ha actuado y que estén en formato Blu-ray`, await objmovis.getMoviesByActorAndFormat());
+
+
 
 objmovis.destructor()
 

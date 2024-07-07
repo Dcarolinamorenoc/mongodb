@@ -281,6 +281,58 @@ export class movis extends connect {
         await this.conexion.close();
         return data;
     }
+
+
+
+    // 15.Encontrar todas las películas en las que John Doe ha actuado y que estén en formato Blu-ray
+
+    async getMoviesByActorAndFormat(){
+        await this.conexion.connect();
+        const collection = this.db.collection('movis');
+        const data = await collection.aggregate(
+            [
+                {
+                  $match: {
+                    "format.name": "Bluray",
+                    "character.id_actor": 1 
+                  }
+                },
+                {
+                  $unwind: "$character"
+                },
+                {
+                  $match: {
+                    "character.id_actor": 1
+                  }
+                },
+                {
+                  $lookup: {
+                    from: "authors",
+                    localField: "character.id_actor",
+                    foreignField: "id_actor",
+                    as: "actor_info"
+                  }
+                },
+                {
+                  $unwind: "$actor_info"
+                },
+                {
+                  $project: {
+                    _id: 0,
+                    movie_id: "$_id",
+                    actor_id: "$character.id_actor",
+                    movie_name: "$name",
+                    rol: "$character.rol",
+                    apodo: "$character.apodo",
+                    actor_name: "$actor_info.full_name",
+                    format_name: "Bluray"
+                  }
+                }
+              ]
+        ).toArray();
+        await this.conexion.close();
+        return data;
+    }
 }
 
 
