@@ -46,7 +46,7 @@ export class movis extends connect {
             }
         ]).toArray();
         await this.conexion.close();
-        return { countByMovieDVD: data[0]?.total_copies || 0 };
+        return { DVDcopies: data[0]?.total_copies || 0 };
     }
 
 

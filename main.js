@@ -2,15 +2,42 @@
 // REALIZACION DE CONSULTAS USANDO CODE CLEAN
 
 
-import {movis} from './js/model/movies.js'
-import {authors} from './js/model/authors.js'
+import { movis } from "./js/model/movies.js";
+import { authors } from "./js/model/authors.js";
 
 
-let objMovis = new movis();
 
-console.log(await objMovis.getTotalDVDCopies());
+// APARTADO DE MOVIES
 
 
+let objmovis = new movis();
+
+// console.log(`1.Contar el número total de copias de DVD disponibles en todos los registros`,await objmovis.getTotalDVDCopies());
+
+
+
+
+
+objmovis.destructor()
+
+
+
+
+
+
+
+// APARTADO DE AUTHORS
+
+
+
+let objauthors = new authors();
+
+// console.log(`2.Encontrar todos los actores que han ganado premios Oscar`,await objauthors.getOscarWinners());
+
+console.log(`3.Encontrar la cantidad total de premios que ha ganado cada actor`,await objauthors.getActorsWithAwardCount());
+
+
+objauthors.destructor()
 
 
 
