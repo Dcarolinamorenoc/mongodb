@@ -421,6 +421,39 @@ export class movis extends connect {
         await this.conexion.close();
         return data;
     }
+
+
+
+    // 19. Calcular el valor total de todas las copias de Blu-ray disponibles
+
+    async getTotalBlurayValue(){
+        await this.conexion.connect();
+        const collection = this.db.collection('movis');
+        const data = await collection.aggregate(
+            [
+                {
+                  $unwind: "$format"
+                },
+                {
+                  $match: { 
+                    "format.name": "Bluray" 
+                  }
+                },
+                {
+                  $group: {
+                    _id: null,
+                    total_value: { 
+                      $sum: { 
+                        $multiply: ["$format.copies", "$format.value"] 
+                      } 
+                    }
+                  }
+                }
+              ]
+        ).toArray();
+        await this.conexion.close();
+        return data;
+    }
 }
 
 

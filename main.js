@@ -32,6 +32,8 @@ let objmovis = new movis();
 
 // console.log(`17. Encontrar la película con más copias disponibles en formato DVD`, await objmovis.getTopDVDCopiesMovie());
 
+console.log(`19. Calcular el valor total de todas las copias de Blu-ray disponibles`, await objmovis.getTotalBlurayValue());
+
 objmovis.destructor()
 
 
@@ -60,7 +62,7 @@ let objauthors = new authors();
 
 // console.log(`12.Encontrar todos los actores que tienen una cuenta de Instagram`,await objauthors.getActorsWithInstagram());
 
-console.log(`18. Encontrar todos los actores que han ganado premios después de 2015`,await objauthors.getActorsRecentAwardsAfter2015());
+// console.log(`18. Encontrar todos los actores que han ganado premios después de 2015`,await objauthors.getActorsRecentAwardsAfter2015());
 
 objauthors.destructor()
 
