@@ -2,37 +2,71 @@
 
 import { connect } from "../../helpers/db/connect.js"
 
-export class authors extends connect {
-    static instanceAuthors;
-    db;
-    collection;
 
-    constructor(){
-        if (authors.instanceauthors){
-            return authors.instanceauthors;
-        }
+export class authors extends connect{
+    static instanceauthors;
+    db
+    constructor() {
         super();
         this.db = this.conexion.db(this.getDbName);
-        this.collection = this.db.collection('authors');
-        authors.instanceAuthors = this;
-    }
-    destructor(){
-        authors.instanceAuthors = undefined;
-        connect.instanceConnect = undefined;
+        if (typeof authors.instanceauthors === 'object') {
+            return authors.instanceauthors;
+        }
+        authors.instanceauthors = this;
+        return this;
     }
 
-    async getDVDCopies() {
+
+    destructor() {
+      authors.instanceauthors=undefined
+      connect.instanceConnect= undefined
+}
+
+    // 2.Encontrar todos los actores que han ganado premios Oscar
+    
+    async getOscarWinners(){
         await this.conexion.connect();
-        
-        const pipeline = [
-        ];
-    
-        const result = await this.collection.aggregate(pipeline).toArray();
+        const collection = this.db.collection('authors');
+        const data = await collection.aggregate(
+            [
+                {
+                    "$unwind": "$awards"
+                },
+                {
+                    "$match": { "awards.name": "Oscar Award" }
+                },
+                {
+                    "$project": {
+                        "_id": 0,
+                        "id_actor": 1,
+                        "full_name": 1,
+                        "awards": 1
+                    }
+                }
+            ]
+        ).toArray();
         await this.conexion.close();
-    
-        const totalCopies = result.length > 0 ? result[0].total_copies : 0;
-    
-        return { DVDCopies: totalCopies };
+        return data;
+    }
+
+    // 3.Encontrar la cantidad total de premios que ha ganado cada actor
+
+    async getActorsWithAwardCount(){
+        await this.conexion.connect();
+        const collection = this.db.collection('authors');
+        const data = await collection.aggregate(
+            [
+                {
+                    "$project": {
+                        "id_actor": 1,
+                        "full_name": 1,
+                        "total_awards": { "$size": "$awards" }
+                    }
+                }
+            ]
+        ).toArray();
+        await this.conexion.close();
+        return data;
     }
 }
 
