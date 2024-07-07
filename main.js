@@ -1,33 +1,61 @@
-import { connect } from "./helpers/db/connect.js";
-import util from 'util';
+
+// REALIZACION DE CONSULTAS USANDO CODE CLEAN
 
 
-import { getCountDvd,
-    getTotalDVDCopies,
-    getUniqueGenresSorted,
-    getMoviesForActor,
-    getTotalValueOfDVDs,
-    getMoviesWithJohnDoeActing,
-    getMoviesWithMainCharacters,
-    getTotalAwards,
-    getMoviesByActorAndFormat,
-    getSciFiMoviesByActor,
-    getTopDVDCopiesMovie,
-    getTotalBlurayValue,
-    getMoviesByActorId2
-} from "./js/model/movies.js";
+import {movis} from './js/model/movies.js'
+import {authors} from './js/model/authors.js'
 
 
-import {
-    getOscarWinners,
-    getActorsWithAwardCount,
-    getActorsBornAfter1980,
-    getActorWithMostAwards,
-    getTotalActorsCount,
-    getAverageActorAge,
-    getActorsWithInstagram,
-    getActorsRecentAwardsAfter2015
-} from "./js/model/authors.js";
+let objMovis = new movis();
+
+console.log(await objMovis.getDVDCopies());
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------
+
+
+
+// import { connect } from "./helpers/db/connect.js";
+// import util from 'util';
+
+
+// import { getCountDvd,
+//     getTotalDVDCopies,
+//     getUniqueGenresSorted,
+//     getMoviesForActor,
+//     getTotalValueOfDVDs,
+//     getMoviesWithJohnDoeActing,
+//     getMoviesWithMainCharacters,
+//     getTotalAwards,
+//     getMoviesByActorAndFormat,
+//     getSciFiMoviesByActor,
+//     getTopDVDCopiesMovie,
+//     getTotalBlurayValue,
+//     getMoviesByActorId2
+// } from "./js/model/movies.js";
+
+
+// import {
+//     getOscarWinners,
+//     getActorsWithAwardCount,
+//     getActorsBornAfter1980,
+//     getActorWithMostAwards,
+//     getTotalActorsCount,
+//     getAverageActorAge,
+//     getActorsWithInstagram,
+//     getActorsRecentAwardsAfter2015
+// } from "./js/model/authors.js";
 
 
 
@@ -140,4 +168,4 @@ import {
 
 // 20.Encontrar todas las películas en las que el actor con id 2 haya participado
 
-console.log (await getMoviesByActorId2());
+// console.log (await getMoviesByActorId2());
