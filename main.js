@@ -13,6 +13,7 @@ import { authors } from "./js/model/authors.js";
 let objmovis = new movis();
 
 // console.log(`1.Contar el número total de copias de DVD disponibles en todos los registros`,await objmovis.getTotalDVDCopies());
+console.log(`6.Listar todos los géneros de películas distintos`,await objmovis.getUniqueGenresSorted());
 
 
 
@@ -38,7 +39,7 @@ let objauthors = new authors();
 
 // console.log(`4.Obtener todos los actores nacidos después de 1980`,await objauthors.getActorsBornAfter1980());
 
-console.log(`5.Encontrar el actor con más premios`,await objauthors.getActorWithMostAwards());
+// console.log(`5.Encontrar el actor con más premios`,await objauthors.getActorWithMostAwards());
 
 objauthors.destructor()
 

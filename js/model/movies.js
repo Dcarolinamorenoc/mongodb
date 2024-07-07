@@ -51,6 +51,29 @@ export class movis extends connect {
 
 
 
+    // 6.Listar todos los géneros de películas distintos
+
+    async getUniqueGenresSorted(){
+        await this.conexion.connect();
+        const collection = this.db.collection('movis');
+        const data = await collection.aggregate(
+            [
+                {
+                    "$unwind": "$genre"
+                },
+                {
+                    "$group": {
+                        "_id": "$genre"
+                    }
+                },
+                {
+                    "$sort": { "_id": 1 }
+                }
+            ]
+        ).toArray();
+        await this.conexion.close();
+        return data;
+    }
 
 }
 
