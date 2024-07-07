@@ -22,6 +22,8 @@ let objmovis = new movis();
 
 // console.log(`9.Encontrar todas las películas en las que John Doe ha actuado`, await objmovis.getMoviesWithJohnDoeActing());
 
+console.log(`13.Encontrar todas las películas en las que participan actores principales`, await objmovis.getMoviesWithMainCharacters());
+
 objmovis.destructor()
 
 
@@ -48,7 +50,7 @@ let objauthors = new authors();
 
 // console.log(`11.Encontrar la edad promedio de los actores en la base de datos`,await objauthors.getAverageActorAge());
 
-console.log(`12.Encontrar todos los actores que tienen una cuenta de Instagram`,await objauthors.getActorsWithInstagram());
+// console.log(`12.Encontrar todos los actores que tienen una cuenta de Instagram`,await objauthors.getActorsWithInstagram());
 
 objauthors.destructor()
 

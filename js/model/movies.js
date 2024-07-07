@@ -201,6 +201,48 @@ export class movis extends connect {
         await this.conexion.close();
         return data;
     }
+
+
+
+    // 13.Encontrar todas las películas en las que participan actores principales
+
+    async getMoviesWithMainCharacters(){
+        await this.conexion.connect();
+        const collection = this.db.collection('movis');
+        const data = await collection.aggregate(
+            [
+                {
+                  $unwind: "$character"
+                },
+                {
+                  $match: { "character.rol": "principal" }
+                },
+                {
+                  $lookup: {
+                    from: "authors",
+                    localField: "character.id_actor",
+                    foreignField: "id_actor",
+                    as: "actor_info"
+                  }
+                },
+                {
+                  $unwind: "$actor_info"
+                },
+                {
+                  $project: {
+                    _id: 1,
+                    movie_name: "$name",
+                    role: "$character.rol",
+                    nickname: "$character.apodo",
+                    actor_id: "$character.id_actor",
+                    actor_name: "$actor_info.full_name"
+                  }
+                }
+              ]
+        ).toArray();
+        await this.conexion.close();
+        return data;
+    }
 }
 
 
