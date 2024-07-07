@@ -18,9 +18,9 @@ let objmovis = new movis();
 
 // console.log(`7.Encontrar películas donde el actor con id 1 haya participado`, await objmovis.getMoviesForActor());
 
-console.log(`8.Calcular el valor total de todas las copias de DVD disponibles`, await objmovis.getTotalValueOfDVDs());
+// console.log(`8.Calcular el valor total de todas las copias de DVD disponibles`, await objmovis.getTotalValueOfDVDs());
 
-
+console.log(`9.Encontrar todas las películas en las que John Doe ha actuado`, await objmovis.getMoviesWithJohnDoeActing());
 
 objmovis.destructor()
 
