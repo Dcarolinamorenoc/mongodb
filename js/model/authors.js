@@ -22,6 +22,9 @@ export class authors extends connect{
       connect.instanceConnect= undefined
 }
 
+
+
+
     // 2.Encontrar todos los actores que han ganado premios Oscar
     
     async getOscarWinners(){
@@ -49,6 +52,8 @@ export class authors extends connect{
         return data;
     }
 
+
+
     // 3.Encontrar la cantidad total de premios que ha ganado cada actor
 
     async getActorsWithAwardCount(){
@@ -68,6 +73,8 @@ export class authors extends connect{
         await this.conexion.close();
         return data;
     }
+
+
 
 
     // 4.Obtener todos los actores nacidos después de 1980
@@ -91,6 +98,34 @@ export class authors extends connect{
                   }
                 }
               ]
+        ).toArray();
+        await this.conexion.close();
+        return data;
+    }
+
+
+
+    // 5.Encontrar el actor con más premios
+
+    async getActorWithMostAwards(){
+        await this.conexion.connect();
+        const collection = this.db.collection('authors');
+        const data = await collection.aggregate(
+            [
+                {
+                    "$project": {
+                        "id_actor": 1,
+                        "full_name": 1,
+                        "total_awards": { "$size": "$awards" }
+                    }
+                },
+                {
+                    "$sort": { "total_awards": -1 }
+                },
+                {
+                    "$limit": 1
+                }
+            ]
         ).toArray();
         await this.conexion.close();
         return data;

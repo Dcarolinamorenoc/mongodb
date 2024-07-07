@@ -36,8 +36,9 @@ let objauthors = new authors();
 
 // console.log(`3.Encontrar la cantidad total de premios que ha ganado cada actor`,await objauthors.getActorsWithAwardCount());
 
-console.log(`4.Obtener todos los actores nacidos después de 1980`,await objauthors.getActorsBornAfter1980());
+// console.log(`4.Obtener todos los actores nacidos después de 1980`,await objauthors.getActorsBornAfter1980());
 
+console.log(`5.Encontrar el actor con más premios`,await objauthors.getActorWithMostAwards());
 
 objauthors.destructor()
 
