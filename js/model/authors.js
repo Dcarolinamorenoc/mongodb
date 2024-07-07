@@ -187,6 +187,35 @@ export class authors extends connect{
         await this.conexion.close();
         return data;
     }
+
+
+
+    // 12.Encontrar todos los actores que tienen una cuenta de Instagram
+
+    async getActorsWithInstagram(){
+        await this.conexion.connect();
+        const collection = this.db.collection('authors');
+        const data = await collection.aggregate(
+            [
+                {
+                  $match: {
+                    "social_media.instagram": { $exists: true, $ne: "" }
+                  }
+                },
+                {
+                  $project: {
+                    _id: 1,
+                    id_actor: 1,
+                    actor_name: "$full_name",
+                    social_media: 1
+                  }
+                }
+              ]
+        ).toArray();
+        await this.conexion.close();
+        return data;
+    }
+
 }
 
 

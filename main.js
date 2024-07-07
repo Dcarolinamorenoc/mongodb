@@ -46,7 +46,9 @@ let objauthors = new authors();
 
 // console.log(`10. Encontrar el número total de actores en la base de datos`,await objauthors.getTotalActorsCount());
 
-console.log(`11.Encontrar la edad promedio de los actores en la base de datos`,await objauthors.getAverageActorAge());
+// console.log(`11.Encontrar la edad promedio de los actores en la base de datos`,await objauthors.getAverageActorAge());
+
+console.log(`12.Encontrar todos los actores que tienen una cuenta de Instagram`,await objauthors.getActorsWithInstagram());
 
 objauthors.destructor()
 
