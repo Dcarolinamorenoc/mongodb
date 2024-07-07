@@ -34,7 +34,9 @@ let objauthors = new authors();
 
 // console.log(`2.Encontrar todos los actores que han ganado premios Oscar`,await objauthors.getOscarWinners());
 
-console.log(`3.Encontrar la cantidad total de premios que ha ganado cada actor`,await objauthors.getActorsWithAwardCount());
+// console.log(`3.Encontrar la cantidad total de premios que ha ganado cada actor`,await objauthors.getActorsWithAwardCount());
+
+console.log(`4.Obtener todos los actores nacidos después de 1980`,await objauthors.getActorsBornAfter1980());
 
 
 objauthors.destructor()
