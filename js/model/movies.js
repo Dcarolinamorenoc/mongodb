@@ -26,11 +26,12 @@ export class movis extends connect {
 
 
 
+    // 1.Contar el número total de copias de DVD disponibles en todos los registros:
     
     async getTotalDVDCopies() {
         await this.conexion.connect();
-        
-        const pipeline = [
+        const collection = this.db.collection('movis'); 
+        const data = await collection.aggregate([
             { 
                 "$unwind": "$format" 
             },
@@ -43,15 +44,14 @@ export class movis extends connect {
                     "total_copies": { "$sum": "$format.copies" }
                 }
             }
-        ];
-    
-        const result = await this.collection.aggregate(pipeline).toArray();
+        ]).toArray();
         await this.conexion.close();
-    
-        const totalCopies = result.length > 0 ? result[0].total_copies : 0;
-    
-        return { DVDCopies: totalCopies };
+        return { countByMovieDVD: data[0]?.total_copies || 0 };
     }
+
+
+
+
 }
 
 
