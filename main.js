@@ -20,7 +20,7 @@ let objmovis = new movis();
 
 // console.log(`8.Calcular el valor total de todas las copias de DVD disponibles`, await objmovis.getTotalValueOfDVDs());
 
-console.log(`9.Encontrar todas las películas en las que John Doe ha actuado`, await objmovis.getMoviesWithJohnDoeActing());
+// console.log(`9.Encontrar todas las películas en las que John Doe ha actuado`, await objmovis.getMoviesWithJohnDoeActing());
 
 objmovis.destructor()
 
@@ -43,6 +43,8 @@ let objauthors = new authors();
 // console.log(`4.Obtener todos los actores nacidos después de 1980`,await objauthors.getActorsBornAfter1980());
 
 // console.log(`5.Encontrar el actor con más premios`,await objauthors.getActorWithMostAwards());
+
+console.log(`10. Encontrar el número total de actores en la base de datos`,await objauthors.getTotalActorsCount());
 
 objauthors.destructor()
 
