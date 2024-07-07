@@ -383,6 +383,44 @@ export class movis extends connect {
         await this.conexion.close();
         return data;
     }
+
+
+
+    // 17. Encontrar la película con más copias disponibles en formato DVD
+
+    async getTopDVDCopiesMovie(){
+        await this.conexion.connect();
+        const collection = this.db.collection('movis');
+        const data = await collection.aggregate(
+            [
+                {
+                  $unwind: "$format"
+                },
+                {
+                  $match: { 
+                    "format.name": "dvd" 
+                  }
+                },
+                {
+                  $sort: { 
+                    "format.copies": -1 
+                  }
+                },
+                {
+                  $limit: 1
+                },
+                {
+                  $project: {
+                    _id: 1,
+                    name: 1,
+                    "format.copies": 1
+                  }
+                }
+              ]
+        ).toArray();
+        await this.conexion.close();
+        return data;
+    }
 }
 
 

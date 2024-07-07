@@ -28,7 +28,9 @@ let objmovis = new movis();
 
 // console.log(`15.Encontrar todas las películas en las que John Doe ha actuado y que estén en formato Blu-ray`, await objmovis.getMoviesByActorAndFormat());
 
-console.log(`16.Encontrar todas las películas de ciencia ficción que tengan al actor con id 3`, await objmovis.getSciFiMoviesByActor());
+// console.log(`16.Encontrar todas las películas de ciencia ficción que tengan al actor con id 3`, await objmovis.getSciFiMoviesByActor());
+
+console.log(`17. Encontrar la película con más copias disponibles en formato DVD`, await objmovis.getTopDVDCopiesMovie());
 
 objmovis.destructor()
 
