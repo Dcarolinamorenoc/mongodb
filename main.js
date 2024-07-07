@@ -13,9 +13,10 @@ import { authors } from "./js/model/authors.js";
 let objmovis = new movis();
 
 // console.log(`1.Contar el número total de copias de DVD disponibles en todos los registros`,await objmovis.getTotalDVDCopies());
-console.log(`6.Listar todos los géneros de películas distintos`,await objmovis.getUniqueGenresSorted());
 
+// console.log(`6.Listar todos los géneros de películas distintos`,await objmovis.getUniqueGenresSorted());
 
+// console.log(`7.Encontrar películas donde el actor con id 1 haya participado`, await objmovis.getMoviesForActor());
 
 
 
