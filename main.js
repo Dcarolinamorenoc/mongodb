@@ -22,7 +22,9 @@ let objmovis = new movis();
 
 // console.log(`9.Encontrar todas las películas en las que John Doe ha actuado`, await objmovis.getMoviesWithJohnDoeActing());
 
-console.log(`13.Encontrar todas las películas en las que participan actores principales`, await objmovis.getMoviesWithMainCharacters());
+// console.log(`13.Encontrar todas las películas en las que participan actores principales`, await objmovis.getMoviesWithMainCharacters());
+
+console.log(`14.Encontrar el número total de premios que se han otorgado en todas las películas`, await objmovis.getTotalAwards());
 
 objmovis.destructor()
 

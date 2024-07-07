@@ -243,6 +243,44 @@ export class movis extends connect {
         await this.conexion.close();
         return data;
     }
+
+
+
+    // 14.Encontrar el número total de premios que se han otorgado en todas las películas
+
+    async getTotalAwards(){
+        await this.conexion.connect();
+        const collection = this.db.collection('movis');
+        const data = await collection.aggregate(
+            [
+                {
+                    $unwind: "$character"
+                },
+                {
+                    $lookup: {
+                        from: "authors",
+                        localField: "character.id_actor",
+                        foreignField: "id_actor",
+                        as: "movies_award"
+                    }
+                },
+                {
+                    $unwind: "$movies_award"
+                },
+                {
+                    $unwind: "$movies_award.awards"
+                },
+                {
+                    $group: {
+                        _id: null,
+                        total_award: {$sum: 1}
+                    }
+                }
+            ]
+        ).toArray();
+        await this.conexion.close();
+        return data;
+    }
 }
 
 
