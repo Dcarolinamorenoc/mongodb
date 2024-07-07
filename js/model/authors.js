@@ -151,6 +151,42 @@ export class authors extends connect{
         await this.conexion.close();
         return data;
     }
+
+
+    // 11.Encontrar la edad promedio de los actores en la base de datos
+
+    async getAverageActorAge(){
+        await this.conexion.connect();
+        const collection = this.db.collection('authors');
+        const data = await collection.aggregate(
+            [
+                {
+                  $project: {
+                    age: {
+                      $divide: [
+                        { $subtract: [new Date(), { $toDate: "$date_of_birth" }] },
+                        31536000000
+                      ]
+                    }
+                  }
+                },
+                {
+                  $group: {
+                    _id: null,
+                    averageAge: { $avg: "$age" }
+                  }
+                },
+                {
+                  $project: {
+                    _id: 0,
+                    "promedio_edad_actores": { $round: ["$averageAge", 2] }
+                  }
+                }
+              ]
+        ).toArray();
+        await this.conexion.close();
+        return data;
+    }
 }
 
 
