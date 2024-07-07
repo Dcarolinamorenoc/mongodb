@@ -30,7 +30,7 @@ let objmovis = new movis();
 
 // console.log(`16.Encontrar todas las películas de ciencia ficción que tengan al actor con id 3`, await objmovis.getSciFiMoviesByActor());
 
-console.log(`17. Encontrar la película con más copias disponibles en formato DVD`, await objmovis.getTopDVDCopiesMovie());
+// console.log(`17. Encontrar la película con más copias disponibles en formato DVD`, await objmovis.getTopDVDCopiesMovie());
 
 objmovis.destructor()
 
@@ -59,6 +59,8 @@ let objauthors = new authors();
 // console.log(`11.Encontrar la edad promedio de los actores en la base de datos`,await objauthors.getAverageActorAge());
 
 // console.log(`12.Encontrar todos los actores que tienen una cuenta de Instagram`,await objauthors.getActorsWithInstagram());
+
+console.log(`18. Encontrar todos los actores que han ganado premios después de 2015`,await objauthors.getActorsRecentAwardsAfter2015());
 
 objauthors.destructor()
 
