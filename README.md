@@ -379,32 +379,13 @@
           rol: "$character.rol",
           apodo: "$character.apodo",
           actor_name: "$actor_info.full_name",
-          format_name: {
-            $filter: {
-              input: "$format",
-              as: "fmt",
-              cond: { $eq: ["$$fmt.name", "Bluray"] }
-            }
-          }
-        }
-      },
-      {
-        $unwind: "$format_name"
-      },
-      {
-        $project: {
-          movie_id: 1,
-          actor_id: 1,
-          movie_name: 1,
-          rol: 1,
-          apodo: 1,
-          actor_name: 1,
-          format_name: "$format_name.name"
+          format_name: "Bluray"
         }
       }
     ]);
+    
     ```
-
+    
 16. **Encontrar todas las películas de ciencia ficción que tengan al actor con id 3:**
 
     ```javascript

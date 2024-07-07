@@ -14,7 +14,7 @@ let objmovis = new movis();
 
 // console.log(`1.Contar el número total de copias de DVD disponibles en todos los registros`,await objmovis.getTotalDVDCopies());
 
-// console.log(`6.Listar todos los géneros de películas distintos`,await objmovis.getUniqueGenresSorted());
+console.log(`6.Listar todos los géneros de películas distintos`,await objmovis.getUniqueGenresSorted());
 
 // console.log(`7.Encontrar películas donde el actor con id 1 haya participado`, await objmovis.getMoviesForActor());
 
@@ -44,7 +44,7 @@ let objauthors = new authors();
 
 // console.log(`5.Encontrar el actor con más premios`,await objauthors.getActorWithMostAwards());
 
-console.log(`10. Encontrar el número total de actores en la base de datos`,await objauthors.getTotalActorsCount());
+// console.log(`10. Encontrar el número total de actores en la base de datos`,await objauthors.getTotalActorsCount());
 
 objauthors.destructor()
 
