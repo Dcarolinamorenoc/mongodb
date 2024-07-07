@@ -118,6 +118,39 @@ export class movis extends connect {
         await this.conexion.close();
         return data;
     }
+
+
+
+    // 8.Calcular el valor total de todas las copias de DVD disponibles
+
+    async getTotalValueOfDVDs(){
+        await this.conexion.connect();
+        const collection = this.db.collection('movis');
+        const data = await collection.aggregate(
+            [
+                {
+                    "$unwind": "$format"
+                },
+                {
+                    "$match": {
+                        "format.name": "dvd"
+                    }
+                },
+                {
+                    "$group": {
+                        "_id": null,
+                        "total_value": {
+                            "$sum": {
+                                "$multiply": ["$format.copies", "$format.value"]
+                            }
+                        }
+                    }
+                }
+            ]
+        ).toArray();
+        await this.conexion.close();
+        return data;
+    }
 }
 
 
