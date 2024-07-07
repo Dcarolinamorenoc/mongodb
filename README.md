@@ -97,7 +97,7 @@
 6. **Listar todos los géneros de películas distintos:**
 
    ```javascript
-   db.movis.aggregate([
+   db.movies.aggregate([
        {
            "$unwind": "$genre"
        },
@@ -108,6 +108,12 @@
        },
        {
            "$sort": { "_id": 1 }
+       },
+       {
+           "$project": {
+               "genero": "$_id",
+               "_id": 0
+           }
        }
    ]);
    ```

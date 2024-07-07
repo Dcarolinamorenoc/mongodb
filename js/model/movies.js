@@ -68,6 +68,12 @@ export class movis extends connect {
                 },
                 {
                     "$sort": { "_id": 1 }
+                },
+                {
+                    "$project": {
+                        "genero": "$_id",
+                        "_id": 0
+                    }
                 }
             ]
         ).toArray();
