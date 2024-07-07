@@ -32,7 +32,9 @@ let objmovis = new movis();
 
 // console.log(`17. Encontrar la película con más copias disponibles en formato DVD`, await objmovis.getTopDVDCopiesMovie());
 
-console.log(`19. Calcular el valor total de todas las copias de Blu-ray disponibles`, await objmovis.getTotalBlurayValue());
+// console.log(`19. Calcular el valor total de todas las copias de Blu-ray disponibles`, await objmovis.getTotalBlurayValue());
+
+console.log(`20.Encontrar todas las películas en las que el actor con id 2 haya participado`, await objmovis.getMoviesByActorId2());
 
 objmovis.destructor()
 

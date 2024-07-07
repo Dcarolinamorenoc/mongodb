@@ -454,6 +454,50 @@ export class movis extends connect {
         await this.conexion.close();
         return data;
     }
+
+
+
+    // 20.Encontrar todas las películas en las que el actor con id 2 haya participado
+
+    async getMoviesByActorId2(){
+        await this.conexion.connect();
+        const collection = this.db.collection('movis');
+        const data = await collection.aggregate(
+            [
+                {
+                  $match: { "character.id_actor": 2 }
+                },
+                {
+                  $unwind: "$character"
+                },
+                {
+                  $match: { "character.id_actor": 2 }
+                },
+                {
+                  $lookup: {
+                    from: "authors",
+                    localField: "character.id_actor",
+                    foreignField: "id_actor",
+                    as: "actor_info"
+                  }
+                },
+                {
+                  $unwind: "$actor_info"
+                },
+                {
+                  $project: {
+                    _id: 1,
+                    movie_name: "$name",
+                    actor_id: "$character.id_actor",
+                    actor_name: "$actor_info.full_name",
+                    role: "$character.rol"
+                  }
+                }
+              ]
+        ).toArray();
+        await this.conexion.close();
+        return data;
+    }
 }
 
 
