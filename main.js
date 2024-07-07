@@ -8,7 +8,7 @@ import {authors} from './js/model/authors.js'
 
 let objMovis = new movis();
 
-console.log(await objMovis.getDVDCopies());
+console.log(await objMovis.getTotalDVDCopies());
 
 
 

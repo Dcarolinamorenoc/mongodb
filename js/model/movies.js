@@ -21,7 +21,13 @@ export class movis extends connect {
         connect.instanceConnect = undefined;
     }
 
-    async getDVDCopies() {
+
+
+
+
+
+    
+    async getTotalDVDCopies() {
         await this.conexion.connect();
         
         const pipeline = [
